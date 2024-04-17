@@ -16,6 +16,8 @@ import Vendor from 'views/Dashboard/Vendor';
 import Order from 'views/Dashboard/Order';
 import Shipping from 'views/Dashboard/Shipping';
 import Members from 'views/Dashboard/Members/Members';
+import Events from 'views/Dashboard/Event';
+import User from 'views/Dashboard/User';
 
 var dashRoutes = [
   {
@@ -24,24 +26,32 @@ var dashRoutes = [
     icon: <HomeIcon color="inherit" />,
     layout: '/admin',
     component: Dashboard,
-    role: [Roles.ADMIN],
+    // role: [Roles.ADMIN],
   },
   {
-    path: '/members',
-    name: 'Members',
-    icon: <BiFoodMenu color="inherit" />,
+    path: '/member',
+    name: 'User',
+    icon: <PersonIcon color="inherit" />,
     layout: '/admin',
     component: Members,
-    role: [Roles.ADMIN],
+    // role: [Roles.ADMIN],
   },
   {
-    path: '/category/:id/size',
-    name: 'Size',
+    path: '/account',
+    name: 'Account',
     icon: <PersonIcon color="inherit" />,
-    redirect: true,
     layout: '/admin',
-    component: Size,
-    role: [Roles.ADMIN],
+    component: User,
+    // role: [Roles.ADMIN],
+  },
+  {
+    path: '/events',
+    name: 'Event',
+    icon: <BiFoodMenu color="inherit" />,
+    // redirect: true,
+    layout: '/admin',
+    component: Events,
+    // role: [Roles.ADMIN],
   },
   {
     path: '/category/:id/colors',
