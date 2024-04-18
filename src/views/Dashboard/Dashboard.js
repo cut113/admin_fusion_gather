@@ -42,7 +42,7 @@ export default function Dashboard() {
       <Flex flexDirection="column" pt={{ base: '120px', md: '75px' }} gap={4}>
         <Card minH="125px" bgColor="white">
           <Heading fontWeight={500} fontSize={20} color="blue.500" mb={4}>
-            Tổng quan
+            Overview
           </Heading>
           {/* <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'} mb={10}>
             <Stack>
@@ -73,13 +73,13 @@ export default function Dashboard() {
           <Flex direction="column">
             <Flex paddingX={8} paddingY={5} rounded={10} backgroundColor="blue.500" flexDirection="row" align="center" w="100%" mb="25px">
               <Heading fontWeight={500} fontSize={18} color="white">
-                Chào mừng đến với Fushion Gather! {userInfo?.username}
+                Welcome to Fushion Gather! {userInfo?.username}
               </Heading>
             </Flex>
           </Flex>
           <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(250px, 1fr))" flexWrap={'wrap'} mb={4}>
             <BoxCard
-              title="Tổng số thành viên"
+              title="Total User"
               content={
                 <Flex alignItems={'center'} gap={4}>
                   <IoIosPeople size={28} />
@@ -91,7 +91,7 @@ export default function Dashboard() {
             />
 
             <BoxCard
-              title="Tổng số sự kiện"
+              title="Total Events"
               content={
                 <Flex alignItems={'center'} gap={4}>
                   <MdPublishedWithChanges size={28} />
@@ -102,7 +102,7 @@ export default function Dashboard() {
               }
             />
             <BoxCard
-              title="Tổng số gian hàng"
+              title="Total Booths"
               content={
                 <Flex alignItems={'center'} gap={4}>
                   <MdViewCozy size={28} />
@@ -113,7 +113,7 @@ export default function Dashboard() {
               }
             />
             <BoxCard
-              title="Tổng số ticket"
+              title="Total Tickets"
               content={
                 <Flex alignItems={'center'} gap={4}>
                   <AiOutlineTransaction size={28} />
@@ -124,7 +124,7 @@ export default function Dashboard() {
               }
             />
             <BoxCard
-              title="Tổng số người tham gia"
+              title="Total Participants"
               content={
                 <Flex alignItems={'center'} gap={4}>
                   <IoIosPeople size={28} />

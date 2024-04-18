@@ -127,7 +127,7 @@ function Category() {
             <Flex direction={'column'}>
               <Flex direction="column" gap={'30px'}>
                 <Text fontSize="xl" color={textColor} fontWeight="bold">
-                  Danh sách Danh Mục
+                  Categories Management
                 </Text>
               </Flex>
             </Flex>

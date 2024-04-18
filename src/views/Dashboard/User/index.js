@@ -93,7 +93,7 @@ function User() {
             <Flex direction={'column'}>
               <Flex direction="column" gap={'30px'}>
                 <Text fontSize="xl" color={textColor} fontWeight="bold">
-                  Quản lý tài khoản
+                  Account Management
                 </Text>
               </Flex>
               {/* <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'}>

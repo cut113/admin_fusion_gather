@@ -16,11 +16,11 @@ const SizeTable = ({ data, handleUpdateCategory, refetch }) => {
   const columns = useMemo(
     () => [
       columnHelper.accessor('firstName', {
-        header: 'Họ',
+        header: 'First Name',
         cell: info => info.getValue(),
       }),
       columnHelper.accessor('lastName', {
-        header: 'Tên',
+        header: 'Last Name',
         cell: info => info.getValue(),
       }),
 
@@ -30,17 +30,17 @@ const SizeTable = ({ data, handleUpdateCategory, refetch }) => {
       }),
 
       columnHelper.accessor('dob', {
-        header: 'Ngày sinh',
+        header: 'Birth Day',
         cell: info => info.getValue(),
       }),
 
       columnHelper.accessor('phoneNumber', {
-        header: 'Số điện thoại',
+        header: 'Phone Number',
         cell: info => info.getValue(),
       }),
 
       columnHelper.accessor('createdAt', {
-        header: 'Ngày tạo',
+        header: 'Created At',
         cell: info => <Text whiteSpace={'nowrap'}>{formatDate(info.row.original.createdAt, 'DD.MM.YYYY hA')}</Text>,
       }),
       columnHelper.accessor('isAdmin', {

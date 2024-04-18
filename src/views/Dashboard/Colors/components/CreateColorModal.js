@@ -39,14 +39,14 @@ const CreateColorModal = ({ isOpen, colorDetail, onClose, refetch }) => {
   }, [colorDetail]);
 
   const handleSuccess = () => {
-    toast.showMessageSuccess(`${colorDetail ? 'Cập nhập' : 'Tạo'} màu thành công`);
+    toast.showMessageSuccess(`${colorDetail ? 'Cập nhật' : 'Tạo'} màu thành công`);
     refetch?.();
     onClose(ModalType.Add);
   };
 
   const handleError = error => {
     toast.showMessageError(
-      error?.response?.data?.errors?.[0]?.msg || error?.response?.data?.msg || `${colorDetail ? 'Cập nhập' : 'Tạo'} màu thất bại`
+      error?.response?.data?.errors?.[0]?.msg || error?.response?.data?.msg || `${colorDetail ? 'Cập nhật' : 'Tạo'} màu thất bại`
     );
   };
 
@@ -73,7 +73,7 @@ const CreateColorModal = ({ isOpen, colorDetail, onClose, refetch }) => {
         <AlertDialogOverlay />
 
         <AlertDialogContent>
-          <AlertDialogHeader textTransform="uppercase">{colorDetail ? 'Cập nhập' : 'Tạo'} màu</AlertDialogHeader>
+          <AlertDialogHeader textTransform="uppercase">{colorDetail ? 'Cập nhật' : 'Tạo'} màu</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
             <form>
@@ -95,7 +95,7 @@ const CreateColorModal = ({ isOpen, colorDetail, onClose, refetch }) => {
               isLoading={createColorMutation.isPending || updateColorMutation.isPending}
               onClick={handleSubmit(onSubmit)}
             >
-              {colorDetail ? 'Cập nhập' : 'Tạo'}
+              {colorDetail ? 'Cập nhật' : 'Tạo'}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

@@ -65,30 +65,30 @@ const SizeTable = ({ data, refetch }) => {
   const columns = useMemo(
     () => [
       columnHelper.accessor('title', {
-        header: 'Tiêu đề',
+        header: 'Title',
         cell: info => info.getValue(),
       }),
       columnHelper.accessor('location', {
-        header: 'Địa điểm',
+        header: 'Location',
         cell: info => info.getValue(),
       }),
 
       columnHelper.accessor('startDateTime', {
-        header: 'Bắt đầu',
+        header: 'Start Time',
         cell: info => <Text whiteSpace={'nowrap'}>{formatDate(info.row.original.startDateTime, 'DD.MM.YYYY hA')}</Text>,
       }),
 
       columnHelper.accessor('endDateTime', {
-        header: 'Hết thúc',
+        header: 'End Time',
         cell: info => <Text whiteSpace={'nowrap'}>{formatDate(info.row.original.endDateTime, 'DD.MM.YYYY hA')}</Text>,
       }),
 
       columnHelper.accessor('price', {
-        header: 'Giá vé',
+        header: 'Price',
         cell: info => info.getValue(),
       }),
       columnHelper.accessor('isFree', {
-        header: 'Miễn phí',
+        header: 'Free',
         cell: info => (
           <FormControl display="flex" alignItems="center">
             <Switch isChecked={info.row.original.isFree} />
@@ -96,7 +96,7 @@ const SizeTable = ({ data, refetch }) => {
         ),
       }),
       columnHelper.accessor('isPublished', {
-        header: 'Công bố',
+        header: 'Publish',
         cell: info => (
           <FormControl display="flex" alignItems="center">
             <Switch isChecked={info.row.original.isPublished} onChange={() => handlePushlish(info.row.original)} />
@@ -104,11 +104,11 @@ const SizeTable = ({ data, refetch }) => {
         ),
       }),
       columnHelper.accessor('author', {
-        header: 'Người tạo',
+        header: 'Actor',
         cell: info => info.getValue().email,
       }),
       columnHelper.accessor('createdAt', {
-        header: 'Ngày tạo',
+        header: 'Created At',
         cell: info => <Text whiteSpace={'nowrap'}>{formatDate(info.row.original.createdAt, 'DD.MM.YYYY hA')}</Text>,
       }),
       columnHelper.accessor('action', {

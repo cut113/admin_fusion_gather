@@ -39,14 +39,14 @@ const CreateSizeModal = ({ isOpen, sizeDetail, onClose, refetch }) => {
   }, [sizeDetail]);
 
   const handleSuccess = () => {
-    toast.showMessageSuccess(`${sizeDetail ? 'Cập nhập' : 'Tạo'} kích thước thành công`);
+    toast.showMessageSuccess(`${sizeDetail ? 'Cập nhật' : 'Tạo'} kích thước thành công`);
     refetch?.();
     onClose(ModalType.Add);
   };
 
   const handleError = error => {
     toast.showMessageError(
-      error?.response?.data?.errors?.[0]?.msg || error?.response?.data?.msg || `${sizeDetail ? 'Cập nhập' : 'Tạo'} kích thước thất bại`
+      error?.response?.data?.errors?.[0]?.msg || error?.response?.data?.msg || `${sizeDetail ? 'Cập nhật' : 'Tạo'} kích thước thất bại`
     );
   };
 
@@ -73,7 +73,7 @@ const CreateSizeModal = ({ isOpen, sizeDetail, onClose, refetch }) => {
         <AlertDialogOverlay />
 
         <AlertDialogContent>
-          <AlertDialogHeader textTransform="uppercase">{sizeDetail ? 'Cập nhập' : 'Tạo'} kích thước</AlertDialogHeader>
+          <AlertDialogHeader textTransform="uppercase">{sizeDetail ? 'Cập nhật' : 'Tạo'} kích thước</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
             <form>
@@ -95,7 +95,7 @@ const CreateSizeModal = ({ isOpen, sizeDetail, onClose, refetch }) => {
               isLoading={createSizeMutation.isPending || updateSizeMutation.isPending}
               onClick={handleSubmit(onSubmit)}
             >
-              {sizeDetail ? 'Cập nhập' : 'Tạo'}
+              {sizeDetail ? 'Cập nhật' : 'Tạo'}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
