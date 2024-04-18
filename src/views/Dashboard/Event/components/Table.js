@@ -6,12 +6,14 @@ import { formatDate } from 'utils/helpers';
 import { BiCommentDetail } from 'react-icons/bi';
 import { ModalType } from 'constants/common';
 import { DeleteIcon } from '@chakra-ui/icons';
-import { usePublishEventMutation } from 'services/event';
+import { useDeleteEventMutation, usePublishEventMutation } from 'services/event';
+import { toast } from 'components/Toast';
 
-const SizeTable = ({ data, handleUpdateCategory, refetch }) => {
+const SizeTable = ({ data, refetch }) => {
   const [sorting, setSorting] = useState([]);
   const columnHelper = createColumnHelper();
   const publishEventMutation = usePublishEventMutation()
+  const deleteEventMutation = useDeleteEventMutation()
   const handlePushlish = async event => {
     if (event.isPublished) {
       const confirmMessage = window.confirm(`Event is already published!`);
@@ -41,8 +43,24 @@ const SizeTable = ({ data, handleUpdateCategory, refetch }) => {
       );
     }
   };
-  const handleRowClick = (ticket, type) => {
-    handleUpdateCategory(ticket, type);
+  const handleRowClick = (event) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete?');
+    if (!confirmDelete) {
+      return;
+    }
+    deleteEventMutation.mutate({ id: event.id },
+      {
+        onSuccess: () => {
+          const successMessage = `Delete event successfully`;
+          toast.showMessageSuccess(successMessage);
+          refetch?.();
+        },
+        onError: () => {
+          const errorMessage = `Delete event unsuccessfully`;
+          toast.showMessageError(errorMessage);
+          refetch?.();
+        },
+      })
   };
   const columns = useMemo(
     () => [
@@ -100,7 +118,7 @@ const SizeTable = ({ data, handleUpdateCategory, refetch }) => {
             <IconButton
               bg="transparent"
               onClick={() => {
-                handleRowClick(info?.row?.original, ModalType.Add);
+                handleRowClick(info?.row?.original);
               }}
             >
               <DeleteIcon cursor="pointer" size={18} />

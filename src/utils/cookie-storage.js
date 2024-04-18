@@ -11,10 +11,7 @@ export const CookieStorage = {
   setCookieData(key, data, path) {
     const expires = dayjs().add(1, 'month').toDate();
 
-    return cookies.set(key, data, {
-      expires,
-      path: path || '/',
-    });
+    return cookies.set(key, data);
   },
   clearCookieData(key, path) {
     return cookies.remove(key, {

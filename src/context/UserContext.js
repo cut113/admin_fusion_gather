@@ -54,6 +54,7 @@ function useUserDispatch() {
 export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
 
 async function loginUser(dispatch, token, user) {
+  console.log("user", user);
   CookieStorage.setCookieData(StorageKeys.AccessToken, token);
   CookieStorage.setCookieData(StorageKeys.UserInfo, JSON.stringify(user));
 

@@ -1,4 +1,4 @@
-import { Box, Flex, IconButton, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { Box, Flex, FormControl, IconButton, Switch, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react';
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable, createColumnHelper } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import isEmpty from 'lodash/isEmpty';
@@ -43,19 +43,12 @@ const SizeTable = ({ data, handleUpdateCategory, refetch }) => {
         header: 'Ngày tạo',
         cell: info => <Text whiteSpace={'nowrap'}>{formatDate(info.row.original.createdAt, 'DD.MM.YYYY hA')}</Text>,
       }),
-      columnHelper.accessor('action', {
-        header: '',
+      columnHelper.accessor('isAdmin', {
+        header: 'Admin',
         cell: info => (
-          <Flex alignItems="center" gap={1}>
-            <IconButton
-              bg="transparent"
-              onClick={() => {
-                handleRowClick(info?.row?.original, ModalType.Add);
-              }}
-            >
-              <BiCommentDetail cursor="pointer" size={18} />
-            </IconButton>
-          </Flex>
+          <FormControl display="flex" alignItems="center">
+            <Switch isChecked={info.row.original.isAdmin} />
+          </FormControl>
         ),
       }),
     ],

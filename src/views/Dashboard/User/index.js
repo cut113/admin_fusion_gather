@@ -93,10 +93,10 @@ function User() {
             <Flex direction={'column'}>
               <Flex direction="column" gap={'30px'}>
                 <Text fontSize="xl" color={textColor} fontWeight="bold">
-                  User List
+                  Quản lý tài khoản
                 </Text>
               </Flex>
-              <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'}>
+              {/* <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'}>
                 <Stack>
                   <Flex alignItems={'center'} gap={'20px'} flexWrap={{ base: 'wrap', md: 'nowrap' }}>
                     <FormControl minWidth={{ base: 'full', sm: '300px' }}>
@@ -110,13 +110,8 @@ function User() {
                     </Button>
                   </Flex>
                 </Stack>
-              </Flex>
+              </Flex> */}
             </Flex>
-            <Button bg="#3182ce" color="#fff" _hover={{ bg: '#67a1d7' }} onClick={onOpenCreateModal}>
-              <Text fontSize="md" fontWeight="bold" cursor="pointer">
-                Add User
-              </Text>
-            </Button>
           </Flex>
         </CardHeader>
         <CardBody overflowX="auto">

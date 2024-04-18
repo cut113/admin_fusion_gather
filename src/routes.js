@@ -67,7 +67,7 @@ var dashRoutes = [
     icon: <IoBook color="inherit" />,
     layout: '/admin',
     component: Category,
-    role: [Roles.ADMIN],
+    // role: [Roles.ADMIN],
   },
   {
     path: '/product/create',

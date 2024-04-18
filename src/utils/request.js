@@ -39,8 +39,8 @@ request.interceptors.response.use(
     return response.data;
   },
   function (errorResponse) {
-    const { error, errors, msg } = errorResponse?.response?.data || {};
-    const message = ErrorApi?.[error || errors?.[0]?.msg || msg] || error || errors?.[0]?.msg || msg;
+    const { error, errors, message } = errorResponse?.response?.data || {};
+    const messages = ErrorApi?.[error || errors?.[0]?.msg || msg] || error || errors?.[0]?.msg || msg;
 
     toast.showMessageError(message);
 
