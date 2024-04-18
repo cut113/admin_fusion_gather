@@ -12,9 +12,11 @@ import { IoIosPeople, IoIosCloudDone } from 'react-icons/io';
 import { GrProductHunt } from 'react-icons/gr';
 import { FaCommentAlt, FaBookOpen } from 'react-icons/fa';
 import { AiOutlineTransaction } from 'react-icons/ai';
+import { MdViewCozy, MdCampaign, MdPublishedWithChanges } from "react-icons/md";
 import { MdCancelPresentation } from 'react-icons/md';
 import DatePicker from 'components/DatePicker/DatePicker';
 import moment from 'moment';
+import { RiAdvertisementFill } from "react-icons/ri";
 
 const initFiler = {
   endTime: getInitFilerChart().endDate,
@@ -25,35 +27,9 @@ export default function Dashboard() {
   const isLoggedIn = CookieStorage.isAuthenticated();
   const history = useHistory();
   const { userInfo } = useUserState();
-  const [statisticFilter, setStatisticFilter] = useState({
-    ...initFiler,
-  });
   const [filter, setFilter] = useState(initFiler);
-  // const { data: statistic } = useQueryGetStatistic({ ...filter }, { enabled: CookieStorage.isAuthenticated() });
-
-  const onReset = () => {
-    setFilter({
-      ...initFiler,
-    });
-    setStatisticFilter({
-      ...initFiler,
-    });
-  };
-
-  const handleSearch = () => {
-    setFilter({
-      ...filter,
-      ...statisticFilter,
-    });
-  };
-
-  const onChangeDate = type => date => {
-    setStatisticFilter(prev => ({
-      ...prev,
-      ...(type === 'startTime' && { endTime: new Date(formatDate(moment(date).add(6, 'days'))) }),
-      [type]: date,
-    }));
-  };
+  const { data: statistic } = useQueryGetStatistic({ enabled: CookieStorage.isAuthenticated() });
+  console.log(statistic);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -68,7 +44,7 @@ export default function Dashboard() {
           <Heading fontWeight={500} fontSize={20} color="blue.500" mb={4}>
             Tổng quan
           </Heading>
-          <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'} mb={10}>
+          {/* <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'} mb={10}>
             <Stack>
               <Flex alignItems={'center'} gap={'14px'} flexWrap={'wrap'}>
                 <FormControl display="flex" flexDirection={'column'} width={{ base: 'full', sm: '300px' }}>
@@ -93,116 +69,73 @@ export default function Dashboard() {
                 </Button>
               </Flex>
             </Stack>
-          </Flex>
+          </Flex> */}
           <Flex direction="column">
             <Flex paddingX={8} paddingY={5} rounded={10} backgroundColor="blue.500" flexDirection="row" align="center" w="100%" mb="25px">
               <Heading fontWeight={500} fontSize={18} color="white">
-                Chào mừng đến với kkShop! {userInfo?.username}
+                Chào mừng đến với Fushion Gather! {userInfo?.username}
               </Heading>
             </Flex>
           </Flex>
-          {/* <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(250px, 1fr))" flexWrap={'wrap'} mb={4}>
+          <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(250px, 1fr))" flexWrap={'wrap'} mb={4}>
             <BoxCard
-              title="Tổng số hội viên"
-              content={
-                <Flex alignItems={'end'} gap={4}>
-                  <IoIosPeople size={30} />
-                  <Text fontWeight={600} fontSize={18}>
-                    {statistic?.data?.memeber}
-                  </Text>
-                </Flex>
-              }
-            />
-            <BoxCard
-              title="Tổng số sản phẩm"
+              title="Tổng số thành viên"
               content={
                 <Flex alignItems={'center'} gap={4}>
-                  <GrProductHunt size={28} />
+                  <IoIosPeople size={28} />
                   <Text fontWeight={600} fontSize={18}>
-                    {statistic?.data?.product}
+                    {statistic?.totalUsers}
                   </Text>
                 </Flex>
               }
             />
+
             <BoxCard
-              title="Tổng số lượt bình luận"
+              title="Tổng số sự kiện"
               content={
                 <Flex alignItems={'center'} gap={4}>
-                  <FaCommentAlt size={28} />
+                  <MdPublishedWithChanges size={28} />
                   <Text fontWeight={600} fontSize={18}>
-                    {statistic?.data?.count_comment}
+                    {statistic?.totalEvents}
                   </Text>
                 </Flex>
               }
             />
             <BoxCard
-              title="Tổng số lượt giao dịch"
+              title="Tổng số gian hàng"
+              content={
+                <Flex alignItems={'center'} gap={4}>
+                  <MdViewCozy size={28} />
+                  <Text fontWeight={600} fontSize={18}>
+                    {statistic?.totalBooths}
+                  </Text>
+                </Flex>
+              }
+            />
+            <BoxCard
+              title="Tổng số ticket"
               content={
                 <Flex alignItems={'center'} gap={4}>
                   <AiOutlineTransaction size={28} />
                   <Text fontWeight={600} fontSize={18}>
-                    {statistic?.data?.transaction?.total}
-                  </Text>
-                </Flex>
-              }
-            />
-          </SimpleGrid> */}
-        </Card>
-        {/* <Card minH="125px" bgColor="white">
-          <Heading fontWeight={500} fontSize={18} color="blue.500" mb={4}>
-            Tổng hợp các giao dịch
-          </Heading>
-          <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(35git0px, 1fr))" flexWrap={'wrap'} mb={4}>
-            <BoxCard
-              title="Tổng số giao dịch đang mở"
-              content={
-                <Flex flexDirection={'column'} gap={3}>
-                  <Flex alignItems={'end'} gap={4}>
-                    <FaBookOpen size={30} />
-                    <Text fontWeight={600} fontSize={18}>
-                      {statistic?.data?.transaction?.open?.total}
-                    </Text>
-                  </Flex>
-                  <Text fontWeight={600} fontSize={18}>
-                    Tổng cộng: {statistic?.data?.transaction?.open?.total_amount}
+                    {statistic?.totalTickets}
                   </Text>
                 </Flex>
               }
             />
             <BoxCard
-              title="Tổng số giao dịch thành công"
+              title="Tổng số người tham gia"
               content={
-                <Flex flexDirection={'column'} gap={3}>
-                  <Flex alignItems={'center'} gap={4}>
-                    <IoIosCloudDone size={28} />
-                    <Text fontWeight={600} fontSize={18}>
-                      {statistic?.data?.transaction?.success?.total}
-                    </Text>
-                  </Flex>
+                <Flex alignItems={'center'} gap={4}>
+                  <IoIosPeople size={28} />
                   <Text fontWeight={600} fontSize={18}>
-                    Tổng cộng: {statistic?.data?.transaction?.success?.total_amount}
-                  </Text>
-                </Flex>
-              }
-            />
-            <BoxCard
-              title="Tổng số giao dịch chưa thanh toán"
-              content={
-                <Flex flexDirection={'column'} gap={3}>
-                  <Flex alignItems={'center'} gap={4}>
-                    <MdCancelPresentation size={28} />
-                    <Text fontWeight={600} fontSize={18}>
-                      {statistic?.data?.transaction?.unpaid?.total}
-                    </Text>
-                  </Flex>
-                  <Text fontWeight={600} fontSize={18}>
-                    Tổng cộng: {statistic?.data?.transaction?.unpaid?.total_amount}
+                    {statistic?.totalVisitors}
                   </Text>
                 </Flex>
               }
             />
           </SimpleGrid>
-        </Card> */}
+        </Card>
       </Flex>
     </>
   );

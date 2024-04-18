@@ -40,9 +40,10 @@ function SignIn() {
       { ...values },
       {
         onSuccess: response => {
-          const { data, token } = response || {};
+          console.log(response);
+          const { user, tokens } = response || {};
 
-          loginUser(userDispatch, token, data);
+          loginUser(userDispatch, tokens, user);
           history.push('/admin/dashboard');
         },
       }

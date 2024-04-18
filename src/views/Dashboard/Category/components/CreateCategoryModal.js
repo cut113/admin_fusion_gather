@@ -29,15 +29,13 @@ const CreateCategoryModal = ({ isOpen, categorysDetail, onClose, refetch }) => {
   const { control, handleSubmit, reset, setValue } = useForm({
     resolver: yupResolver(CategoryFormValidate),
     defaultValues: {
-      title: '',
-      description: '',
-      thumbnail: '',
+      categoryName: '',
     },
   });
 
   useEffect(() => {
     if (categorysDetail) {
-      reset({ title: categorysDetail.title, description: categorysDetail.description, thumbnail: categorysDetail.thumbnail, id: categorysDetail?._id });
+      reset({ categoryName: categorysDetail.categoryName, id: categorysDetail?.id });
     }
   }, [categorysDetail]);
 
@@ -52,28 +50,17 @@ const CreateCategoryModal = ({ isOpen, categorysDetail, onClose, refetch }) => {
     );
   };
   const onSubmit = async values => {
+    console.log(values);
     if (categorysDetail) {
-      if (categorysDetail.thumbnail === values.thumbnail) {
-        updateCategoryMutation.mutate(
-          { ...values, categoryId },
-          {
-            onSuccess: () => {
-              handleSuccess();
-            },
-            onError: error => handleError(error),
-          }
-        );
-      } else {
-        updateCategoryMutation.mutate(
-          { ...values, categoryId },
-          {
-            onSuccess: () => {
-              handleSuccess();
-            },
-            onError: error => handleError(error),
-          }
-        );
-      }
+      updateCategoryMutation.mutate(
+        { ...values },
+        {
+          onSuccess: () => {
+            handleSuccess();
+          },
+          onError: error => handleError(error),
+        }
+      );
     } else {
       createCategoryMutation.mutate(
         { ...values },
@@ -115,8 +102,8 @@ const CreateCategoryModal = ({ isOpen, categorysDetail, onClose, refetch }) => {
           <AlertDialogHeader textTransform="uppercase">{categorysDetail ? 'Cập nhật' : 'Tạo'} Danh Mục</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody >
-            <InputController control={control} name="title" label="Tên" />
-            <InputController control={control} name="description" label="Mô tả" type='textarea' />
+            <InputController control={control} name="categoryName" label="Tên" />
+            {/* <InputController control={control} name="description" label="Mô tả" type='textarea' />
             <Controller
               control={control}
               name="thumbnail"
@@ -133,7 +120,7 @@ const CreateCategoryModal = ({ isOpen, categorysDetail, onClose, refetch }) => {
                   {error && <div className="text-danger mt-2">{error.message}</div>}
                 </div>
               )}
-            />
+            /> */}
           </AlertDialogBody>
           <AlertDialogFooter>
             <Button

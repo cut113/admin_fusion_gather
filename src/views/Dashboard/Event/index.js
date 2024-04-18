@@ -26,10 +26,12 @@ function Events() {
     const isLoggedIn = CookieStorage.isAuthenticated();
     const textColor = useColorModeValue('gray.700', 'white');
     const history = useHistory();
+    const [events, setEvents] = useState([])
     const [sizeEditing, setSizeEditing] = useState(null);
     const [filter, setFilter] = useState({
         pageNumber: 1,
-        pageSize: 2
+        pageSize: 20,
+        all: 1
     });
     const [searchTitle, setSearchTitle] = useState('');
 
@@ -76,7 +78,7 @@ function Events() {
         };
     }
 
-    const pagination = pagingResponse(20)
+    const pagination = pagingResponse(events?.length)
     const closeModal = useMemo(
         () => ({
             [ModalType.Add]: onCloseCreateModal,
@@ -85,8 +87,10 @@ function Events() {
         [onCloseCreateModal, onCloseChangeStatusModal]
     );
 
-    const { data: events, refetch } = useQueryGetgetListEvent({ ...filter }, { enabled: isLoggedIn });
-
+    const { data: listEvents, refetch } = useQueryGetgetListEvent({ ...filter }, { enabled: isLoggedIn });
+    useEffect(() => {
+        setEvents(listEvents)
+    }, [listEvents])
     const handleUpdateItem = (size, modalType) => {
         openModal?.[modalType]?.();
         setSizeEditing(size);
@@ -111,7 +115,7 @@ function Events() {
                         <Flex direction={'column'}>
                             <Flex direction="column" gap={'30px'}>
                                 <Text fontSize="xl" color={textColor} fontWeight="bold">
-                                    Quản lý thành viên
+                                    Quản lý sự kiện
                                 </Text>
                             </Flex>
                             <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'}>
@@ -130,16 +134,16 @@ function Events() {
                                 </Stack>
                             </Flex>
                         </Flex>
-                        <Button bg="#3182ce" color="#fff" _hover={{ bg: '#67a1d7' }} onClick={onOpenCreateModal}>
+                        {/* <Button bg="#3182ce" color="#fff" _hover={{ bg: '#67a1d7' }} onClick={onOpenCreateModal}>
                             <Text fontSize="md" fontWeight="bold" cursor="pointer">
                                 Add event
                             </Text>
-                        </Button>
+                        </Button> */}
                     </Flex>
                 </CardHeader>
                 <CardBody overflowX="auto">
                     <Stack overflow={'auto'}>
-                        <SizeTable data={events || []} handleUpdateCategory={handleUpdateItem} refetch={refetch} />
+                        <SizeTable data={events || []} refetch={refetch} />
                     </Stack>
                     <Flex justifyContent={'flex-end'}>
                         <Pagination

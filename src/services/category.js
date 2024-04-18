@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { request } from 'utils/request';
 
-export const getListCategory = params => request.get('/api/v1/categories/', { params });
-export const createCategory = data => request.post('/api/v1/categories/create', data);
-export const updateCategory = data => request.post('/api/v1/categories/update', data);
-export const deleteCategory = data => request.post('/api/v1/categories/delete', data);
+export const getListCategory = params => request.get('category', { params });
+export const createCategory = data => request.post('category/create', data);
+export const updateCategory = data => request.patch(`category/${data.id}`, data);
+export const deleteCategory = data => request.delete(`category/${data.id}`);
 export const setBestCategory = data => request.post('/api/v1/categories/set-best', data);
 export const exportTemplate = (data) => request.post('/api/v1/categories/export-template', data, { responseType: 'arraybuffer' })
 export const importFile = (data, config) =>

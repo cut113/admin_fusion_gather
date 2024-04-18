@@ -63,7 +63,7 @@ function Category() {
     { ...filter, searchKeyword: filter.searchTitle },
     { enabled: CookieStorage.isAuthenticated() }
   );
-
+  console.log(categoryData);
   const handleUpdateItem = (size, modalType) => {
     openModal?.[modalType]?.();
     setSizeEditing(size);
@@ -130,38 +130,8 @@ function Category() {
                   Danh sách Danh Mục
                 </Text>
               </Flex>
-              <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'}>
-                <Stack>
-                  <Flex alignItems={'center'} gap={'20px'} flexWrap={{ base: 'wrap', md: 'nowrap' }}>
-                    <FormControl minWidth={{ base: 'full', sm: '300px' }}>
-                      <FormLabel>Tìm kiếm Danh Mục</FormLabel>
-                      <Input value={searchTitle} onChange={e => setSearchTitle(e.target.value)} />
-                    </FormControl>
-                    <Button variant="primary" maxH="40px" alignSelf={'end'} onClick={handleSearch}>
-                      <Text fontSize="md" fontWeight="bold" cursor="pointer">
-                        Tìm kiếm
-                      </Text>
-                    </Button>
-                  </Flex>
-                </Stack>
-              </Flex>
             </Flex>
             <Flex>
-              <Button bg="#3182ce" color="#fff" _hover={{ bg: '#67a1d7' }} isLoading={false} onClick={onDownloadTemplate}>
-                Tải template
-              </Button>
-              <input type="file" hidden ref={inputImportRef} onChange={handleImportProduct} />
-                <Button
-                  bg="#3182ce"
-                  color="#fff"
-                  margin="0 16px"
-                  _hover={{ bg: '#67a1d7' }}
-                  onClick={() => {
-                    inputImportRef?.current?.click();
-                  }}
-                >
-                  Import sản phẩm
-                </Button>
               <Button bg="#3182ce" color="#fff" _hover={{ bg: '#67a1d7' }} onClick={onOpenCreateModal}>
                 <Text fontSize="md" fontWeight="bold" cursor="pointer">
                   Thêm
@@ -173,7 +143,7 @@ function Category() {
         </CardHeader>
         <CardBody overflowX="auto">
           <Stack overflow={'auto'}>
-            <SizeTable categoryData={categoryData?.data || []} handleUpdateCategory={handleUpdateItem} refetch={refetch} />
+            <SizeTable categoryData={categoryData || []} handleUpdateCategory={handleUpdateItem} refetch={refetch} />
           </Stack>
           <Flex justifyContent={'flex-end'}>
             <Pagination

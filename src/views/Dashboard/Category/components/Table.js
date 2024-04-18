@@ -26,7 +26,7 @@ const SizeTable = ({ categoryData, handleUpdateCategory, refetch }) => {
       return;
     }
     deleteCategoryMutation.mutate(
-      { id: category?._id },
+      { id: category?.id },
       {
         onSuccess: () => {
           toast.showMessageSuccess('Xóa danh mục thành công');
@@ -40,28 +40,6 @@ const SizeTable = ({ categoryData, handleUpdateCategory, refetch }) => {
     );
   };
 
-  const handleBestCategory = async category => {
-    const actionText = category.isBest ? 'Xóa' : 'Thêm';
-    const confirmMessage = window.confirm(`Bạn có chắc chắn muốn cài đặt danh mục ${category.title} là danh mục tốt nhất?`);
-    if (!confirmMessage) {
-      return;
-    }
-    setBestCategoryMutation.mutate(
-      { id: category._id },
-      {
-        onSuccess: () => {
-          const successMessage = `${actionText} danh mục ${category.title} là danh mục tốt nhất thành công`;
-          toast.showMessageSuccess(successMessage);
-          refetch?.();
-        },
-        onError: () => {
-          const errorMessage = `${actionText} danh mục ${category.title} là danh mục tốt nhất không thành công`;
-          toast.showMessageError(errorMessage);
-          refetch?.();
-        },
-      }
-    );
-  };
 
   const handleSwitchChange = category => {
     handleBestCategory(category);
@@ -69,28 +47,13 @@ const SizeTable = ({ categoryData, handleUpdateCategory, refetch }) => {
 
   const columns = useMemo(
     () => [
-      columnHelper.accessor('title', {
-        header: 'Tên',
+      columnHelper.accessor('id', {
+        header: 'ID',
         cell: info => info.getValue(),
       }),
-
-      columnHelper.accessor('isBest', {
-        header: 'Best',
-        cell: info => (
-          <FormControl display="flex" alignItems="center">
-            <Switch isChecked={info.row.original.isBest} onChange={() => handleSwitchChange(info.row.original)} />
-          </FormControl>
-        ),
-      }),
-
-      columnHelper.accessor('thumbnail', {
-        header: 'Ảnh',
-        cell: info => {
-          const thumbnailUrl = info.row.original.thumbnail;
-          return thumbnailUrl ? (
-            <img src={`${process.env.REACT_APP_API_HOST}/${thumbnailUrl}`} style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
-          ) : null;
-        },
+      columnHelper.accessor('categoryName', {
+        header: 'Tên danh mục',
+        cell: info => info.getValue(),
       }),
 
       columnHelper.accessor('action', {
@@ -105,7 +68,7 @@ const SizeTable = ({ categoryData, handleUpdateCategory, refetch }) => {
             >
               <EditIcon cursor="pointer" boxSize={4} />
             </IconButton>
-            <IconButton
+            {/* <IconButton
               bg="transparent"
               onClick={() => {
                 history.push(`/admin/category/${info?.row?.original?._id}/size`);
@@ -120,7 +83,7 @@ const SizeTable = ({ categoryData, handleUpdateCategory, refetch }) => {
               }}
             >
               <MdOutlineColorLens size={16} />
-            </IconButton>
+            </IconButton> */}
             <IconButton
               bg="transparent"
               onClick={() => {

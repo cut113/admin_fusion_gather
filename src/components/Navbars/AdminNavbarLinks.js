@@ -17,12 +17,15 @@ import { NavLink, useHistory } from 'react-router-dom';
 import routes from 'routes.js';
 import { useUserDispatch, signOut } from 'context/UserContext';
 import logo from 'assets/svg/logo-2q.svg';
+import { CookieStorage } from 'utils/cookie-storage';
 
 export default function HeaderLinks(props) {
   const { variant, children, fixed, scrolled, secondary, onOpen, ...rest } = props;
 
   const { colorMode } = useColorMode();
-  const { isAuthenticated, userInfo } = useUserState();
+  const { isAuthenticated } = useUserState();
+  const userInfo = CookieStorage.getCurrentUser()
+  console.log(userInfo);
   const userDispatch = useUserDispatch();
   const history = useHistory();
 
@@ -48,14 +51,14 @@ export default function HeaderLinks(props) {
             <MenuButton display="flex" flexDirection="row">
               <ProfileIcon color={navbarIcon} w="22px" h="22px" me="0px" />
               <Text display={{ sm: 'none', md: 'inline-flex' }} color={navbarIcon}>
-                {userInfo?.username}
+                {userInfo?.firstName} {userInfo?.lastName}
               </Text>
             </MenuButton>
             <MenuList padding={"0"} bg={menuBg}>
               <Flex flexDirection="column">
                 <MenuItem padding={"10px 14px"} mb="10px">
                   <ItemContent
-                    info={userInfo?.username}
+                    info={`${userInfo?.firstName} ${userInfo?.lastName}`}
                     boldInfo="Username"
                     aSrc={avatar1}
                   // additionalComponent={
@@ -66,7 +69,7 @@ export default function HeaderLinks(props) {
                   />
                 </MenuItem>
                 <MenuItem _hover={{ color: "blue.600" }} color={"gray.500"} padding={"10px 14px"} onClick={() => handleToProfile()}>
-                  <ProfileIcon  w="22px" h="22px" me="0px" />
+                  <ProfileIcon w="22px" h="22px" me="0px" />
                   <Text ml={2} fontWeight="bold" >Profile</Text>
                 </MenuItem>
                 <Button width={"fit-content"} margin={"18px"} padding={"2px 18px"} onClick={() => signOut(userDispatch, history)}>

@@ -9,9 +9,9 @@ export const updateProfile = async data => {
     },
   });
 };
-export const register = data => request.post('/api/v1/user/register', data);
+export const register = data => request.post('account/admin/regiter', data);
 export const changePassword = data => request.post('/api/v1/user/change-password', data);
-export const login = data => request.post('account/login', data);
+export const login = data => request.post('account/admin/login', data);
 export const getListAccount = params => request.get('account', { params });
 export const blockUser = data => request.patch(`account/ban/${data.id}`);
 
