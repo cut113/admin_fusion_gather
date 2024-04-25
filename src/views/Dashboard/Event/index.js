@@ -31,10 +31,6 @@ function Events() {
     const [filter, setFilter] = useState({
         pageNumber: 1,
         pageSize: 20,
-<<<<<<< HEAD
-        all: 1
-=======
->>>>>>> 3f3d3b8 (feat: manage event)
     });
     const [searchTitle, setSearchTitle] = useState('');
 
