@@ -137,7 +137,7 @@ const CreateCategoryModal = ({ isOpen, categorysDetail, onClose, refetch }) => {
               isLoading={createCategoryMutation.isPending || updateCategoryMutation.isPending}
               onClick={handleSubmit(onSubmit)}
             >
-              {categorysDetail ? 'Cập nhập' : 'Tạo'}
+              {categorysDetail ? 'Cập nhật' : 'Tạo'}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

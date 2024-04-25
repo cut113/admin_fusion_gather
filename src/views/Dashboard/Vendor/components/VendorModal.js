@@ -117,7 +117,7 @@ const VendorModal = ({ isOpen, vendorDetail, onClose, refetch }) => {
                             // isLoading={createCategoryMutation.isPending || updateCategoryMutation.isPending}
                             onClick={handleSubmit(onSubmit)}
                         >
-                            {vendorDetail ? 'Cập nhập' : 'Tạo'}
+                            {vendorDetail ? 'Cập nhật' : 'Tạo'}
                         </Button>
                     </AlertDialogFooter>
                 </AlertDialogContent>

@@ -31,7 +31,10 @@ function Events() {
     const [filter, setFilter] = useState({
         pageNumber: 1,
         pageSize: 20,
+<<<<<<< HEAD
         all: 1
+=======
+>>>>>>> 3f3d3b8 (feat: manage event)
     });
     const [searchTitle, setSearchTitle] = useState('');
 
@@ -115,7 +118,7 @@ function Events() {
                         <Flex direction={'column'}>
                             <Flex direction="column" gap={'30px'}>
                                 <Text fontSize="xl" color={textColor} fontWeight="bold">
-                                    Quản lý sự kiện
+                                    Events Management
                                 </Text>
                             </Flex>
                             <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'}>

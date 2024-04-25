@@ -87,7 +87,7 @@ function Members() {
           <Flex justifyContent={'space-between'}>
             <Flex direction="column" gap={'30px'}>
               <Text fontSize="xl" color={textColor} fontWeight="bold">
-                Quản lý thành viên
+                User Management
               </Text>
               {/* <Flex justifyContent={'space-between'} alignItems={'end'} gap={'20px'} mt={'20px'}>
                 <Stack>

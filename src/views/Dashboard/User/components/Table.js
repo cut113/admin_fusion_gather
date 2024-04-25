@@ -46,11 +46,11 @@ const SizeTable = ({ data, refetch, handleViewUserDetail }) => {
         cell: info => info.getValue(),
       }),
       columnHelper.accessor('verificationCode', {
-        header: 'Mã kích hoạt',
+        header: 'Verify Code',
         cell: info => info.getValue(),
       }),
       columnHelper.accessor('isActivated', {
-        header: 'Chặn',
+        header: 'Block',
         cell: info => (
           <FormControl display="flex" alignItems="center">
             <Switch isChecked={!info.row.original.isActivated} onChange={() => handleBlockUser(info.row.original)} />
@@ -58,7 +58,7 @@ const SizeTable = ({ data, refetch, handleViewUserDetail }) => {
         ),
       }),
       columnHelper.accessor('isVerified', {
-        header: 'Kích hoạt',
+        header: 'Verified',
         cell: info => (
           <FormControl display="flex" alignItems="center">
             <Switch isChecked={info.row.original.isVerified} />
@@ -66,7 +66,7 @@ const SizeTable = ({ data, refetch, handleViewUserDetail }) => {
         ),
       }),
       columnHelper.accessor('createdAt', {
-        header: 'Ngày tạo',
+        header: 'Created At',
         cell: info => <Text whiteSpace={'nowrap'}>{formatDate(info.row.original.createdAt, 'DD.MM.YYYY hA')}</Text>,
       }),
       columnHelper.accessor('action', {

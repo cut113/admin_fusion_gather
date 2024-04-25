@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { request } from 'utils/request';
 
-export const getListEvent = params => request.get('event', { params });
+export const getListEvent = params => request.get('event/admin', { params });
 export const publishEvent = data => request.post(`event/publishEvent/${data.id}`);
 export const deleteEvent = data => request.delete(`event/${data.id}`);
 

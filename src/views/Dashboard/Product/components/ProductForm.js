@@ -231,11 +231,11 @@ export default function ProductForm() {
         {
           onSuccess: () => {
             refetch();
-            toast.showMessageSuccess('Cập nhập sản phẩm thành công');
+            toast.showMessageSuccess('Cập nhật sản phẩm thành công');
             history.push('/admin/product');
           },
           onError: () => {
-            toast.showMessageError('Cập nhập sản phẩm thất bại');
+            toast.showMessageError('Cập nhật sản phẩm thất bại');
           },
         }
       );
@@ -280,7 +280,7 @@ export default function ProductForm() {
         <CardHeader p="6px 0px 22px 0px">
           <Flex alignItems="center" justifyContent="space-between">
             <Text fontSize="xl" fontWeight="bold">
-              {`${id ? 'Cập nhập' : 'Tạo'} sản phẩm`}
+              {`${id ? 'Cập nhật' : 'Tạo'} sản phẩm`}
             </Text>
             {!!id && (
               <Flex flexDirection="column" alignItems="center" gap={1}>
@@ -413,7 +413,7 @@ export default function ProductForm() {
               isLoading={createProductMutation.isPending || updateProductMutation.isPending}
               onClick={handleSubmit(onSubmit)}
             >
-              {!!id ? 'Cập nhập ' : 'Tạo'}
+              {!!id ? 'Cập nhật ' : 'Tạo'}
             </Button>
           </Flex>
         </CardBody>

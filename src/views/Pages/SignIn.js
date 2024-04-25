@@ -40,7 +40,6 @@ function SignIn() {
       { ...values },
       {
         onSuccess: response => {
-          console.log(response);
           const { user, tokens } = response || {};
 
           loginUser(userDispatch, tokens, user);

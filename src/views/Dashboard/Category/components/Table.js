@@ -52,7 +52,7 @@ const SizeTable = ({ categoryData, handleUpdateCategory, refetch }) => {
         cell: info => info.getValue(),
       }),
       columnHelper.accessor('categoryName', {
-        header: 'Tên danh mục',
+        header: 'Name',
         cell: info => info.getValue(),
       }),
 

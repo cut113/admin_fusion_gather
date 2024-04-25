@@ -46,7 +46,7 @@ var dashRoutes = [
   },
   {
     path: '/events',
-    name: 'Event',
+    name: 'Events',
     icon: <BiFoodMenu color="inherit" />,
     // redirect: true,
     layout: '/admin',
@@ -63,7 +63,7 @@ var dashRoutes = [
   },
   {
     path: '/category',
-    name: 'Thể loại',
+    name: 'Categories',
     icon: <IoBook color="inherit" />,
     layout: '/admin',
     component: Category,
